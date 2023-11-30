@@ -1,18 +1,142 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    <<<<<<< HEAD margin-bottom: auto;
+    margin: 0;
+    padding: 0;
+    ======= margin-bottom: auto;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: relative;
+}
+
+.topnav-right {
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.topnav-left {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 30px;
+}
+
+#navbarColor02 {
+    padding-left: 23%;
+    position: center;
+}
+
+#navLink-right {
+    position: absolute;
+    right: 2rem;
+}
+
+#navLink-space {
+    padding-left: 5rem;
+}
+
+.d-flex {
+    min-width: 50rem;
+}
+
+/* Home - Index CSS */
+
+/*  Main Div    */
+
+.home-main {
+    padding-top: 2.5rem;
+    margin-left: 0;
+}
+
+.home-gallery {
+    margin-bottom: 1.8rem;
+}
+
+.header-1 {
+    left: 1rem;
+}
+
+.container-gallery-parent {
+    display: flex;
+}
+
+.container-home-main-gallery {
+    margin: 0.8rem;
+    min-width: 17.5rem;
+    min-height: 10.5rem;
+    width: auto;
+    height: auto;
+    border: 3px solid black;
+}
+
+.container-home-image img {
+    width: 100%;
+}
+
+
+.home-gallery-1 {
+    margin-top: 4rem;
+    margin-bottom: 1.8rem;
+}
+
+.home-gallery-side-div {
+    width: 20rem;
+    display: flex;
+}
+
+.home-gallery-side-div-container {
+    display: flex;
+}
+
+.home-gallery-left {
+    width: 40.5rem;
+    padding: 1.5rem;
+    margin: 0rem;
+}
+
+.home-gallery-right {
+    width: 40.5rem;
+    padding: 1.5rem;
+    margin: 0rem;
+}
+
+.home-gallery-3 {
+    margin-top: 4rem;
+    margin-bottom: 1.8rem;
+}
+
+
+/*Artwork */
+
+.container-artwork-vertical {
+    display: flex;
+    margin-top: 3rem;
+    margin-left: -6rem;
+}
+
+.container-artwork-main-gallery {
+    margin: 0.25rem;
+    width: 18.8rem;
+    height: auto;
+}
+
+.container-artwork img {
+    width: 100%;
+    margin-bottom: 60px;
 }

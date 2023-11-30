@@ -1,0 +1,94 @@
+﻿@{
+    var imageDirectory = "wwwroot/testImages";
+    var imageFiles = Directory.EnumerateFiles(imageDirectory, "*.*").Where(s => s.EndsWith(".jpg") || s.EndsWith(".png") || s.EndsWith(".gif") || s.EndsWith(".bmp") || s.EndsWith(".jpeg")).ToList();
+    var numDirectoryImages = imageFiles.Count;
+
+    var pageSize = 60;
+    var page = Context.Request.Query["page"].Count > 0 ? int.Parse(Context.Request.Query["page"]) : 1; // Define page here
+    var totalCombinedPages = Math.Ceiling((double)numDirectoryImages / pageSize);
+    var combinedOffset = (page - 1) * pageSize;
+    var currentPageResults = imageFiles.Skip(combinedOffset).Take(pageSize);
+}
+
+<link rel="stylesheet" href="/css/artworks.css">
+<style>
+    body {
+        background-color: #14141b;
+    }
+</style>
+
+<div class="artworks-body">
+    <div class="main" id="page-content">
+        <section class="gallery">
+            <h1 class="header-1">Illustrations</h1>
+        </section>
+    </div>
+
+    <!-- Sorting Buttons -->
+    <div class="button-sort" id="image-sort">
+        <form method="get">
+            <button type="submit" name="sort" value="latest">Newest</button>
+            <button type="submit" name="sort" value="oldest">Oldest</button>
+        </form>
+    </div>
+
+    <div class="grid" id="image-grid">
+        @foreach (var imagePath in currentPageResults)
+        {
+            <script>console.log("Image Path:", @("/" + imagePath.Substring("wwwroot".Length)))</script>
+            try
+            {
+                <div class="grid-display-container">
+                    <div class="image-container">
+                        <img src="~/testImages/@System.IO.Path.GetFileName(imagePath)" alt="Image" style="border-radius: 8px;" />
+                    </div>
+                    <div class="image-info">
+                        <div class="artwork-title-container">Title</div>
+                        <div class="artist-name-container">Artist Name</div>
+                    </div>
+                </div>
+            }
+            catch (Exception ex)
+            {
+                <p>Error loading image: @ex.Message</p>
+            }
+
+        }
+    </div>
+
+    <div class="page-navigation">
+        @if (page > 1)
+        {
+            <a href="?page=1">&laquo;</a>
+            <a href="?page=@(page - 1)">&#8249;</a>
+        }
+        else
+        {
+            <span class="disabled">&laquo;</span>
+            <span class="disabled">&#8249;</span>
+        }
+
+        @for (var p = 1; p <= totalCombinedPages; p++)
+        {
+            if (p == page)
+            {
+                <span class="current-page">@p</span>
+            }
+            else
+            {
+                <a href="?page=@p">@p</a>
+            }
+        }
+
+        @if (page < totalCombinedPages)
+        {
+            <a href="?page=@(page + 1)">&#8250;</a>
+            <a href="?page=@totalCombinedPages">&raquo;</a>
+        }
+        else
+        {
+            <span class="disabled">&#8250;</span>
+            <span class="disabled">&raquo;</span>
+        }
+    </div>
+</div>
