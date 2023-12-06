@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Artwork
+
+@{
     var imageDirectory = "wwwroot/testImages";
     var imageFiles = Directory.EnumerateFiles(imageDirectory, "*.*").Where(s => s.EndsWith(".jpg") || s.EndsWith(".png") || s.EndsWith(".gif") || s.EndsWith(".bmp") || s.EndsWith(".jpeg")).ToList();
     var numDirectoryImages = imageFiles.Count;
@@ -25,11 +27,21 @@
     </div>
 
     <!-- Sorting Buttons -->
-    <div class="button-sort" id="image-sort">
-        <form method="get">
+    <div class="query-buttons" id="buttons">
+    <div class="button-sort button-query-align-left" id="image-sort">
+        <form method="get" asp-action="Index">
             <button type="submit" name="sort" value="latest">Newest</button>
             <button type="submit" name="sort" value="oldest">Oldest</button>
         </form>
+    </div>
+    <div class="button-filter button-query-align-right" id="image-filter">
+        <form method="get" asp-action="Index">
+            <button type="submit" name="filter" value="All-Ages">All-Ages</button>
+            <button type="submit" name="filter" value="R-15">R-15</button>
+            <button type="submit" name="filter" value="R-18">R-18</button>
+            <button type="submit" name="filter" value="All">All-Ages</button>
+        </form>
+    </div>
     </div>
 
     <div class="grid" id="image-grid">

@@ -8,6 +8,60 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Quicksand&display=swap');
 
 /* Main body styling */
+.main {
+    padding-left: 8rem;
+    padding-right: 8rem;
+    padding-bottom: 1rem;
+    padding-top: 1.5rem;
+}
+
+/* Style the sorting buttons */
+#buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.query-buttons {
+    padding-left: 7.5rem;
+    padding-right: 7.5rem;
+    padding-bottom: 1rem;
+}
+
+.button-query-align-left {
+    text-align: left;
+}
+
+.button-query-align-right {
+    text-align: right;
+}
+
+.query-buttons button {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    background-color: transparent;
+    outline: none;
+    transition-duration: .3s;
+}
+
+  /* Style the active sorting button */
+.query-buttons button.active {
+    background-color: #4F4F54;
+    color: white;
+    transition-duration: .3s;
+}
+
+  /* Style the sorting buttons on hover */
+.query-buttons button:hover {
+    color: #A7A7AA;
+    transition-timing-function: ease-in-out;
+}
+
 .artworks-body {
     margin: 0;
     font-family: 'DM Sans', sans-serif;
