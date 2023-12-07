@@ -1,0 +1,15 @@
+﻿<!-- Views/Picture/Index.cshtml -->
+@model PictureModel
+
+<h1>Picture and Comment</h1>
+
+<img src="@Url.Content(Model.ImageUrl)" alt="Picture" />
+
+<h2>Comment Section</h2>
+<p>@Html.Raw(Model.Comments)</p>
+
+<form asp-action="AddComment" method="post">
+    <textarea id="comment" name="Comment" rows="4" cols="50"></textarea>
+    <br />
+    <button type="submit">Submit Comment</button>
+</form>
