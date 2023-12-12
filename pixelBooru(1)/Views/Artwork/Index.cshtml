@@ -17,6 +17,62 @@
     body {
         background-color: #14141b;
     }
+
+    #image-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+
+        #image-popup img {
+            max-width: 100%;
+            max-height: 80vh; /* Set a maximum height for the image */
+            border-radius: 8px;
+        }
+
+    .close-popup {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        color: black; /* Set the color to black */
+        cursor: pointer;
+    }
+
+    #popup-content {
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items horizontally */
+        color:black;
+    }
+
+    #popup-artist,
+    #popup-date {
+        white-space: nowrap; /* Prevent line breaks */
+    }
+
+    #popup-title {
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    #popup-info {
+        display: flex;
+        justify-content: space-between; /* Add space between artist and date */
+        width: 100%; /* Ensure full width */
+    }
+
+    #popup-tags {
+        align-items: flex-start;
+        color:black;
+    }
 </style>
 
 <div class="artworks-body">
@@ -45,12 +101,18 @@
     </div>
 
     <div class="grid" id="image-grid">
+        @{
+            var counter = 1; // Initialize a counter variable
+        }
+
         @foreach (var imagePath in currentPageResults)
         {
-            <script>console.log("Image Path:", @("/" + imagePath.Substring("wwwroot".Length)))</script>
-            try
-            {
-                <div class="grid-display-container">
+            var tags = new List<string> { "Tag1", "Tag2", "Tag3" }; // Replace with actual tags for the image
+
+            <a href="javascript:void(0);" onclick="handleImageClick(@counter, '@("/testImages/"+ System.IO.Path.GetFileName(imagePath))', 'Your Image Title', 'Your Artist Name', 'Your Date Posted', ['Tag1', 'Tag2', 'Tag3'])">
+                <script>console.log("Image Path:", @("/" + imagePath.Substring("wwwroot".Length)), "ID: @counter");</script>
+
+                <div class="grid-display-container" id="image-container-@counter">
                     <div class="image-container">
                         <img src="~/testImages/@System.IO.Path.GetFileName(imagePath)" alt="Image" style="border-radius: 8px;" />
                     </div>
@@ -59,14 +121,76 @@
                         <div class="artist-name-container">Artist Name</div>
                     </div>
                 </div>
-            }
-            catch (Exception ex)
-            {
-                <p>Error loading image: @ex.Message</p>
+            </a>
+
+            counter++; // Increment the counter for the next iteration
+        }
+
+        <!-- Add a pop-up container for the image -->
+        <div id="image-popup">
+            <span onclick="closeImagePopup()" class="close-popup">&times;</span>
+            <img id="popup-image" alt="Image" />
+            <div id="popup-content" class="flex-container">
+                <!-- Add content for the pop-up container, e.g., additional image details -->
+                <div id="popup-title" class="artwork-title-container"></div>
+                <div id="popup-info" class="info-container">
+                    <div id="popup-artist" class="artist-name-container"></div>
+                    <div id="popup-date" class="date-container"></div>
+                </div>
+            </div>
+            <div id="popup-tags" class="tags-container"></div>
+        </div>
+
+
+
+        <script>
+            function handleImageClick(imageId, imagePath, title, artistName, datePosted, tags) {
+                // Handle click event, you can use imageId for further processing
+                console.log("Clicked on image with ID:", imageId);
+
+                // Set the source of the pop-up image
+                document.getElementById('popup-image').src = imagePath;
+
+                // Set the title, artist name, and date in the pop-up content
+                document.getElementById('popup-title').innerText = "Title: " + title;
+                document.getElementById('popup-artist').innerText = "Artist: " + artistName;
+                document.getElementById('popup-date').innerText = "Date Posted: " + datePosted;
+
+                // Display clickable tags in the pop-up content
+                var tagsContainer = document.getElementById('popup-tags');
+                tagsContainer.innerHTML = "Tags: " + generateTagLinks(tags);
+
+                // Show the image pop-up container
+                document.getElementById('image-popup').style.display = 'block';
             }
 
-        }
+
+
+            function generateTagLinks(tags) {
+                return tags.map(tag => `<a href="#" onclick="handleTagClick('${tag}')">${tag}</a>`).join(', ');
+            }
+
+            function handleTagClick(tag) {
+                // Handle tag click event, e.g., navigate to a tag-specific page
+                console.log("Clicked on tag:", tag);
+            }
+
+            function closeImagePopup() {
+                // Close the image pop-up container
+                document.getElementById('image-popup').style.display = 'none';
+            }
+        </script>
+
+
+
+
     </div>
+
+
+    </div>
+
+
+
 
     <div class="page-navigation">
         @if (page > 1)
@@ -103,4 +227,3 @@
             <span class="disabled">&raquo;</span>
         }
     </div>
-</div>
