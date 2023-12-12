@@ -1,0 +1,51 @@
+﻿@{
+
+}
+<body>
+    <div class="form-box">
+        <br>
+        
+            <h1>pixelBooru</h1>
+            <input clas="input-title" type="text" id="title" name="title" maxlength="32" placeholder="Title" required>
+            <span class="character-counter" id="title-counter">0/32</span>
+            <br>
+            <div class="error-message">
+            </div>
+            <label class="custom-file-upload">
+                <input type="file" name="my_image" onchange="loadFile(event)">
+                <img id="output" />
+                <script>
+                    var loadFile = function (event) {
+                        var output = document.getElementById('output');
+                        output.src = URL.createObjectURL(event.target.files[0]);
+                        output.onload = function () {
+                            URL.revokeObjectURL(output.src) // free memory
+                        }
+                    };
+                </script>
+                <br>
+                Upload Image
+            </label>
+            <br>
+                <textarea id="caption" name="caption" maxlength="3000" placeholder="Caption"></textarea>
+                <span class="character-counter" id="caption-counter">0/3000</span>
+
+                <input class="input-tags" type="text" id="tags" name="tags[]" maxlength="100" placeholder="Tags (separated by commas, ie. girl, boy, original)">
+                <span class="character-counter" id="tag-counter">0/10</span>
+
+                <label for="ratings">Visible to:</label>
+                <input type="radio" id="all" name="ratings" value="all">
+                <label for="all">All</label>
+
+                <input type="radio" id="r15" name="ratings" value="r15">
+                <label for="r15">R-15</label>
+
+                <input type="radio" id="r18" name="ratings" value="r18">
+                <label for="r18">R-18</label>
+
+                <input type="submit" class="upload-btn" name="submit" value="Upload">
+                <button class="back-btn" onclick="history.back()">Back</button>
+            
+        
+    </div>
+</body>
