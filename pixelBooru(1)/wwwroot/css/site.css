@@ -11,13 +11,14 @@ html {
 html {
     position: relative;
     min-height: 100%;
+    max-width:100%;
 }
 
 body {
-    <<<<<<< HEAD margin-bottom: auto;
+    margin-bottom: auto;
     margin: 0;
     padding: 0;
-    ======= margin-bottom: auto;
+    margin-bottom: auto;
     margin: 0;
     padding: 0;
 }

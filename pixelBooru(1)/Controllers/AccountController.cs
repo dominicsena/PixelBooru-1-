@@ -33,5 +33,10 @@ namespace pixelBooru_1_.Controllers
 
             return View();
         }
+
+        public IActionResult Profile()
+        {
+            return View();
+        }
     }
 }
