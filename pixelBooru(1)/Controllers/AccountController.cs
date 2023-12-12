@@ -18,5 +18,10 @@ namespace pixelBooru_1_.Controllers
         {
             return View();
         }
+
+        public IActionResult Upload()
+        {
+            return View();
+        }
     }
 }
