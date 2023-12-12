@@ -25,6 +25,7 @@ body {
 
 header {
     position: relative;
+    max-width:100%;
 }
 
 .topnav-right {
@@ -39,7 +40,7 @@ header {
 }
 
 #navbarColor02 {
-    padding-left: 23%;
+
     position: center;
 }
 
