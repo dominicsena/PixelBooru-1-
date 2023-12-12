@@ -1,110 +1,87 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tiny Slider Example</title>
 
+    <!-- Add Tiny Slider CSS to your head section -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css">
 
+    <!-- Add Material Icons font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
 
-<style>
-    body {
-        background-color: #14141b;
-    }
-</style>
+<body>
 
+    <div class="home-main">
+        <div class="home-gallery">
+            <a class="nav-link" asp-area="" asp-controller="Artwork" asp-action=""><h2 class="header-1">MOST POPULAR </h2></a>
+        </div>
 
-<div class="home-main">
-   <div class="home-gallery">
-        <a class="nav-link" asp-area="" asp-controller="Artwork" asp-action=""><h2 class="header-1">MOST POPULAR </h2></a>
+    <div id="popularSlider" class="container-gallery-parent">
+        <div class="slider-item">
+            <img src="https://konachan.net/sample/54b383ef567cad376dc2c4bd57dee23b/Konachan.com%20-%20366324%20sample.jpg" alt="Placeholder 1">
+        </div>
+        <div class="slider-item">
+            <img src="https://konachan.net/jpeg/aba3e9cedac75c50d78956f6b384c686/Konachan.com%20-%20366516%202girls%20electric_miku_%28project_voltage%29%20ground_miku_%28project_voltage%29%20hatsune_miku%20kokorori-p%20pokemon%20project_voltage%20rotom%20vibrava%20vocaloid.jpg" alt="Placeholder 2">
+        </div>
+        <div class="slider-item">
+            <img src="https://konachan.net/sample/0227e2c804c98b3bed09e04d7a9ab972/Konachan.com%20-%20366551%20sample.jpg" alt="Placeholder 3">
+        </div>
+        <div class="slider-item">
+            <img src="https://konachan.net/jpeg/cb516116390abe7ec4622b8a2728e70c/Konachan.com%20-%20366518%202girls%20dark_miku_%28project_voltage%29%20gloves%20hatsune_miku%20kokorori-p%20linoone%20meloetta%20pokemon%20project_voltage%20psychic_miku_%28project_voltage%29%20vocaloid.jpg" alt="Placeholder 4">
+        </div>
+        <!-- Add more slider items with placeholder images as needed -->
     </div>
+        <div class="home-gallery-side-div">
 
-   <div class="container-gallery-parent">
-        <div class="container-home-main-gallery">
-            <div class="container-home-image">
-                <img src="https://konachan.net/sample/54b383ef567cad376dc2c4bd57dee23b/Konachan.com%20-%20366324%20sample.jpg" alt="picture" />
-
-            </div>
-
-        </div>
-
-        <div class="container-home-main-gallery">
-            <div class="container-home-image">
-                <img src="https://konachan.net/sample/6860f528292cabbb1cf56bfc08111716/Konachan.com%20-%20366482%20sample.jpg" alt="picture" />
-
-            </div>
-
-        </div>
-
-        <div class="container-home-main-gallery">
-            <div class="container-home-image">
-                <img src="https://konachan.net/sample/004d4e978d2af4500c02f4b49bee193c/Konachan.com%20-%20366550%20sample.jpg" alt="picture" />
-
-            </div>
-
-        </div>
-
-        <div class="container-home-main-gallery">
-            <div class="container-home-image">
-                <img src="https://konachan.net/sample/e4bb871a49d83ec978d82ac2f21f1b41/Konachan.com%20-%20366481%20sample.jpg" alt="picture" />
-
-            </div>
-
-        </div>
-      
-   </div>
-   <div class="home-gallery-side-div">
-       
 
             <div class="home-gallery-left">
                 <div class="home-gallery-1">
-                <a class="nav-link" asp-area="" asp-controller="Artwork" asp-action="Index"><h2 class="header-1">LATEST ARTWORKS </h2></a>
+                    <a class="nav-link" asp-area="" asp-controller="Artwork" asp-action="Index"><h2 class="header-1">LATEST ARTWORKS </h2></a>
                 </div>
 
                 <div class="container-gallery-parent">
-                    <div class="container-home-main-gallery">
-                        <div class="container-home-image">
-                        <img src="https://konachan.net/jpeg/58e07ea663993969ccdc73d190a47c45/Konachan.com%20-%20366542%20animal_ears%20arknights%20blue_eyes%20brown_hair%20cape%20dress%20horns%20long_hair%20sword%20viviana_%28arknights%29%20weapon.jpg" alt="picture" />
-
+                    <div class="container-home-main-gallery1">
+                        <div class="container-home-image1">
+                            <img src="https://konachan.net/jpeg/58e07ea663993969ccdc73d190a47c45/Konachan.com%20-%20366542%20animal_ears%20arknights%20blue_eyes%20brown_hair%20cape%20dress%20horns%20long_hair%20sword%20viviana_%28arknights%29%20weapon.jpg" alt="picture" />
                         </div>
-
                     </div>
 
-                    <div class="container-home-main-gallery">
-                        <div class="container-home-image">
-                        <img src="https://konachan.net/sample/0227e2c804c98b3bed09e04d7a9ab972/Konachan.com%20-%20366551%20sample.jpg" alt="picture" />
-
+                    <div class="container-home-main-gallery1">
+                        <div class="container-home-image1">
+                            <img src="https://konachan.net/sample/0227e2c804c98b3bed09e04d7a9ab972/Konachan.com%20-%20366551%20sample.jpg" alt="picture" />
                         </div>
-
                     </div>
                 </div>
+
                 <div class="container-gallery-parent">
-                    <div class="container-home-main-gallery">
-                        <div class="container-home-image">
-                        <img src="https://konachan.net/jpeg/cb516116390abe7ec4622b8a2728e70c/Konachan.com%20-%20366518%202girls%20dark_miku_%28project_voltage%29%20gloves%20hatsune_miku%20kokorori-p%20linoone%20meloetta%20pokemon%20project_voltage%20psychic_miku_%28project_voltage%29%20vocaloid.jpg" alt="picture" />
-
+                    <div class="container-home-main-gallery1">
+                        <div class="container-home-image1">
+                            <img src="https://konachan.net/jpeg/cb516116390abe7ec4622b8a2728e70c/Konachan.com%20-%20366518%202girls%20dark_miku_%28project_voltage%29%20gloves%20hatsune_miku%20kokorori-p%20linoone%20meloetta%20pokemon%20project_voltage%20psychic_miku_%28project_voltage%29%20vocaloid.jpg" alt="picture" />
                         </div>
-
                     </div>
 
-                    <div class="container-home-main-gallery">
-                        <div class="container-home-image">
-                        <img src="https://konachan.net/jpeg/aba3e9cedac75c50d78956f6b384c686/Konachan.com%20-%20366516%202girls%20electric_miku_%28project_voltage%29%20ground_miku_%28project_voltage%29%20hatsune_miku%20kokorori-p%20pokemon%20project_voltage%20rotom%20vibrava%20vocaloid.jpg" alt="picture" />
-
+                    <div class="container-home-main-gallery1">
+                        <div class="container-home-image1">
+                            <img src="https://konachan.net/jpeg/aba3e9cedac75c50d78956f6b384c686/Konachan.com%20-%20366516%202girls%20electric_miku_%28project_voltage%29%20ground_miku_%28project_voltage%29%20hatsune_miku%20kokorori-p%20pokemon%20project_voltage%20rotom%20vibrava%20vocaloid.jpg" alt="picture" />
                         </div>
-
                     </div>
                 </div>
-
 
             </div>
 
             <div class="home-gallery-right">
                 <div class="home-gallery-1">
-                <a class="nav-link" asp-area="" asp-controller="Artist" asp-action="Index"><h2 class="header-1">ARTISTS </h2></a>
+                    <a class="nav-link" asp-area="" asp-controller="Artist" asp-action="Index"><h2 class="header-1">ARTISTS </h2></a>
                 </div>
 
                 <div class="container-gallery-parent">
                     <div class="container-home-main-gallery">
                         <div class="container-home-image">
-                        <img src="https://pbs.twimg.com/profile_images/1713470868335300608/TVjCpoGD_400x400.jpg" alt="怪獣" />
+                            <img src="https://pbs.twimg.com/profile_images/1713470868335300608/TVjCpoGD_400x400.jpg" alt="怪獣" />
 
                         </div>
 
@@ -112,7 +89,7 @@
 
                     <div class="container-home-main-gallery">
                         <div class="container-home-image">
-                        <img src="https://pbs.twimg.com/profile_images/1528460470717657088/_w_dr9Ll_400x400.jpg" alt=" hazuki gyokuto" />
+                            <img src="https://pbs.twimg.com/profile_images/1528460470717657088/_w_dr9Ll_400x400.jpg" alt=" hazuki gyokuto" />
 
                         </div>
 
@@ -121,7 +98,7 @@
                 <div class="container-gallery-parent">
                     <div class="container-home-main-gallery">
                         <div class="container-home-image">
-                        <img src="https://pbs.twimg.com/profile_images/1701677727311618050/uxjl8GIp_400x400.jpg" alt="7PΞACH" />
+                            <img src="https://media.forgecdn.net/avatars/165/556/636692954364967749.jpeg" alt="7PΞACH" />
 
                         </div>
 
@@ -129,7 +106,7 @@
 
                     <div class="container-home-main-gallery">
                         <div class="container-home-image">
-                        <img src="https://pbs.twimg.com/profile_images/1560843065547702273/NMsEEktg_400x400.jpg" alt="るりまる" />
+                            <img src="https://pbs.twimg.com/profile_images/1560843065547702273/NMsEEktg_400x400.jpg" alt="るりまる" />
 
                         </div>
 
@@ -138,106 +115,113 @@
 
             </div>
 
-       
-       
-   </div>
+        </div> 
 
-       <div class="home-gallery-explore">
+        <div class="home-gallery-explore">
 
-        <div class="home-gallery-3">
-            <h2 class="header-1">EXPLORE </h2>
-        </div>
-        <div class="home-gallery-explore-1">
             <div class="home-gallery-3">
-                <a class="nav-link" asp-area="" asp-controller="Artwork" asp-action="Explore"><h2 class="header-1">Genshin Impact </h2></a>
+                <h2 class="header-1">EXPLORE </h2>
             </div>
-            <div class="container-gallery-parent">
-                <div class="container-home-main-gallery">
-                    <div class="container-home-image">
-                        <img src="https://konachan.net/sample/6d41ac33260f15e67c1b7dc2f4ed44f2/Konachan.com%20-%20366427%20sample.jpg" alt="artist: BattlequeenYume" />
-
-                    </div>
-
-                </div>
-
-                <div class="container-home-main-gallery">
-                    <div class="container-home-image">
-                        <img src="https://konachan.net/sample/362c75337545ca9eacc58d1b430411d3/Konachan.com%20-%20366529%20sample.jpg" alt="artist: BattlequeenYume" />
-
-                    </div>
-
-                </div>
-
-                <div class="container-home-main-gallery">
-                    <div class="container-home-image">
-                        <img src="https://konachan.net/sample/58abd965e7baf248078f0d6176d391fe/Konachan.com%20-%20365123%20sample.jpg" alt="artist: BattlequeenYume" />
-
-                    </div>
-
-                </div>
-
-                <div class="container-home-main-gallery">
-                    <div class="container-home-image">
-                        <img src="https://konachan.net/sample/e7359f36d94f067c052516ec0b8f8746/Konachan.com%20-%20365438%20sample.jpg" alt="artist: BattlequeenYume" />
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="home-gallery-explore-2">
-
+            <div class="home-gallery-explore-1">
                 <div class="home-gallery-3">
-                    <a class="nav-link" asp-area="" asp-controller="Artwork" asp-action="Explore"><h2 class="header-1">Original </h2></a>
+                    <a class="nav-link" asp-area="" asp-controller="Artwork" asp-action="Explore"><h2 class="header-1">Genshin Impact </h2></a>
                 </div>
-
                 <div class="container-gallery-parent">
-                    <div class="container-home-main-gallery">
-                        <div class="container-home-image">
-                            <img src="https://konachan.net/sample/4d8998c1418562fba28d7d05a78650cb/Konachan.com%20-%20366255%20sample.jpg" alt="picture" />
+                    <div class="container-home-main-gallery2">
+                        <div class="container-home-image2">
+                            <img src="https://konachan.net/sample/6d41ac33260f15e67c1b7dc2f4ed44f2/Konachan.com%20-%20366427%20sample.jpg" alt="artist: BattlequeenYume" />
 
                         </div>
 
                     </div>
 
-                    <div class="container-home-main-gallery">
-                        <div class="container-home-image">
-                            <img src="https://konachan.net/sample/db4ab78b3d391c1e01a09bb3126bd1e9/Konachan.com%20-%20366252%20sample.jpg" alt="picture" />
+                    <div class="container-home-main-gallery2">
+                        <div class="container-home-image2">
+                            <img src="https://konachan.net/sample/362c75337545ca9eacc58d1b430411d3/Konachan.com%20-%20366529%20sample.jpg" alt="artist: BattlequeenYume" />
 
                         </div>
 
                     </div>
 
-                    <div class="container-home-main-gallery">
-                        <div class="container-home-image">
-                            <img src="https://konachan.net/sample/abf728699cceabb0cd4094099d6e650f/Konachan.com%20-%20365968%20sample.jpg" alt="picture" />
+                    <div class="container-home-main-gallery2">
+                        <div class="container-home-image2">
+                            <img src="https://konachan.net/sample/58abd965e7baf248078f0d6176d391fe/Konachan.com%20-%20365123%20sample.jpg" alt="artist: BattlequeenYume" />
 
                         </div>
 
                     </div>
 
-                    <div class="container-home-main-gallery">
-                        <div class="container-home-image">
-                            <img src="https://github.com/SibuyasFuri/2ITF-Group-6-higherBooru/blob/main/images/IMG-646c45062ea916.23879295.png?raw=true" alt="picture" />
+                    <div class="container-home-main-gallery2">
+                        <div class="container-home-image2">
+                            <img src="https://konachan.net/sample/e7359f36d94f067c052516ec0b8f8746/Konachan.com%20-%20365438%20sample.jpg" alt="artist: BattlequeenYume" />
 
                         </div>
 
                     </div>
 
                 </div>
+
+                <div class="home-gallery-explore-2">
+
+                    <div class="home-gallery-3">
+                        <a class="nav-link" asp-area="" asp-controller="Artwork" asp-action="Explore"><h2 class="header-1">Original </h2></a>
+                    </div>
+
+                    <div class="container-gallery-parent">
+                        <div class="container-home-main-gallery3">
+                            <div class="container-home-image3">
+                                <img src="https://konachan.net/sample/4d8998c1418562fba28d7d05a78650cb/Konachan.com%20-%20366255%20sample.jpg" alt="picture" />
+
+                            </div>
+
+                        </div>
+
+                        <div class="container-home-main-gallery3">
+                            <div class="container-home-image3">
+                                <img src="https://konachan.net/sample/db4ab78b3d391c1e01a09bb3126bd1e9/Konachan.com%20-%20366252%20sample.jpg" alt="picture" />
+
+                            </div>
+
+                        </div>
+
+                        <div class="container-home-main-gallery3">
+                            <div class="container-home-image3">
+                                <img src="https://konachan.net/sample/abf728699cceabb0cd4094099d6e650f/Konachan.com%20-%20365968%20sample.jpg" alt="picture" />
+
+                            </div>
+
+                        </div>
+
+                        <div class="container-home-main-gallery3">
+                            <div class="container-home-image3">
+                                <img src="https://github.com/SibuyasFuri/2ITF-Group-6-higherBooru/blob/main/images/IMG-646c45062ea916.23879295.png?raw=true" alt="picture" />
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
-           
+
         </div>
 
+       </div>
 
-           </div>
-
-    
-
-    
-
-        
-    
-    </div>
-
+    <!-- Add Tiny Slider JS to your body -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Tiny Slider without controls
+            var popularSlider = tns({
+                container: '#popularSlider',
+                items: 1,
+                slideBy: 'page',
+                autoplay: true,
+                controlsText: ["", ""], // Set controlsText to an empty string to hide navigation buttons
+            });
+        });
+    </script>
+</body>
+</html>

@@ -77,19 +77,31 @@ header {
     display: flex;
 }
 
+.container-home-main-gallery3, .container-home-image2, .container-home-image1 {
+    margin: 0.6rem;
+    width: 442px;
+    height: 333px;
+    border: 3px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    .container-home-image3 img, .container-home-image2 img, .container-home-image1 img {
+        width: 436px;
+        height: 327px;
+    }
+
 .container-home-main-gallery {
-    margin: 0.8rem;
-    min-width: 17.5rem;
-    min-height: 10.5rem;
-    width: auto;
-    height: auto;
+    margin: 0.6rem;
+    width: 313px;
+    height: 333px;
     border: 3px solid black;
 }
 
 .container-home-image img {
-    width: 100%;
+    width: 293px;
+    height: 327px;
 }
-
 
 .home-gallery-1 {
     margin-top: 4rem;
@@ -97,11 +109,6 @@ header {
 }
 
 .home-gallery-side-div {
-    width: 20rem;
-    display: flex;
-}
-
-.home-gallery-side-div-container {
     display: flex;
 }
 
@@ -115,6 +122,8 @@ header {
     width: 40.5rem;
     padding: 1.5rem;
     margin: 0rem;
+    /* Add margin-left to push it to the right */
+    margin-left: auto;
 }
 
 .home-gallery-3 {
@@ -141,3 +150,24 @@ header {
     width: 100%;
     margin-bottom: 60px;
 }
+
+.slider-container {
+    max-width: 1000px;
+    margin: 50px auto;
+}
+
+.slider-item {
+    text-align: center;
+    max-width: 1000px; /* Adjust the maximum width as needed */
+    margin: 0 auto; /* Center the item */
+}
+
+    .slider-item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .tns-outer button, .tns-nav, .tns-controls{
+        display: none;
+    }
