@@ -12546,4 +12546,19 @@ legend {
 .card .h5,
 .card .h6 {
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.5), 0 0 0.5rem rgba(255, 255, 255, 0.3), 0 0 2rem rgba(255, 255, 255, 0.2);
+
 }
+
+div.background {
+    background-color: #c8a2f6; /* Light Purple Color */
+    border-radius: 10px; /* Adjust the value for the desired corner roundness */
+    padding: 20px; /* Add padding for spacing inside the container */
+    padding-top: 10px; /* Adjust the value for the desired top padding */
+    margin-top: 10px;
+}
+
+
+
+
+}
+
