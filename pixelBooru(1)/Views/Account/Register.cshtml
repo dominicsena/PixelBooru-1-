@@ -1,27 +1,124 @@
 ﻿@model pixelBooru_1_.Model.RegisterModel
 
+<div class="background">
+
 <div class="container">
     <h1 class="text-center mt-5">Registration</h1>
+
     <div asp-validation-summary="All">
         <form asp-action="Register" asp-controller="Account" class="mt-5">
             <div class="form-group">
                 <label asp-for="UserName"></label>
-                <input asp-for="UserName" class="form-control" placeholder="Enter Username">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <input asp-for="UserName" class="form-control" placeholder="Enter Username" style="font-size: inherit; line-height: 1; text-align: center; margin-bottom: 10px;">
             </div>
             <div class="form-group">
                 <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" placeholder="Enter Password">
+                <div class="input-group">
+                    <input asp-for="Password" type="password" class="form-control" placeholder="********" oninput="handlePasswordInput(this)" style="font-size: inherit; line-height: 1; text-align: center; margin-bottom: 10px;">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility(this, 'Password')">Show</button>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="ConfirmPassword"></label>
-                <input asp-for="ConfirmPassword" class="form-control">
+                <div class="input-group">
+                    <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="********" oninput="handlePasswordInput(this)" style="font-size: inherit; line-height: 1; text-align: center; margin-bottom: 10px;">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility(this, 'ConfirmPassword')">Show</button>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control">
+                <input asp-for="Email" class="form-control" placeholder="Enter Email" style="font-size: inherit; line-height: 1; text-align: center; margin-bottom: 10px;">
             </div>
             <input type="submit" value="Submit" class="btn btn-primary">
+
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </form>
     </div>
+        <div id="passwordError" style="color: red;">
+
+            <script>
+                function handlePasswordInput(inputElement) {
+                    // Get the value entered by the user
+                    var password = inputElement.value;
+
+                    // Create a string of asterisks with the same length as the password
+                    var asterisks = '*'.repeat(password.length);
+
+                    // Set the placeholder to the asterisk string
+                    inputElement.placeholder = asterisks;
+
+                    // Display password length error message
+                    var errorElement = document.getElementById('passwordError');
+                    if (password.length < 8 || password.length > 20) {
+                        errorElement.innerText = 'Password must be between 8 and 20 characters';
+                    } else {
+                        errorElement.innerText = ''; // Clear the error message
+                    }
+
+                    // Check if the confirmation password matches
+                    var confirmPasswordInput = document.getElementById('ConfirmPassword');
+                    var confirmErrorElement = document.getElementById('confirmPasswordError');
+                    if (confirmPasswordInput.value !== password) {
+                        confirmErrorElement.innerText = 'Passwords do not match';
+                    } else {
+                        confirmErrorElement.innerText = ''; // Clear the error message
+                    }
+                }
+
+                function togglePasswordVisibility(buttonElement, inputId) {
+                    // Find the input field with the specified ID
+                    var passwordInput = document.getElementById(inputId);
+
+                    // Toggle the visibility of the password
+                    passwordInput.type = (passwordInput.type === 'password') ? 'text' : 'password';
+
+                    // Change the button text based on the current state
+                    buttonElement.textContent = (passwordInput.type === 'password') ? 'Show' : 'Hide';
+
+                    // If the password is hidden, reset the placeholder to asterisks
+                    if (passwordInput.type === 'password') {
+                        handlePasswordInput(passwordInput);
+                    } else {
+                        // If the password is shown, clear the placeholder and error message
+                        passwordInput.placeholder = '';
+                        var errorElement = document.getElementById('passwordError');
+                        errorElement.innerText = '';
+                    }
+                }
+
+                // Hook into the form submission to perform client-side validation
+                document.querySelector('form').addEventListener('submit', function (event) {
+                    var passwordInput = document.getElementById('Password');
+                    var confirmPasswordInput = document.getElementById('ConfirmPassword');
+                    var confirmErrorElement = document.getElementById('confirmPasswordError');
+                    var errorElement = document.getElementById('passwordError');
+
+                    // Check if the password meets the length criteria
+                    if (passwordInput.value.length < 8 || passwordInput.value.length > 20) {
+                        errorElement.innerText = 'Password must be between 8 and 20 characters';
+                        event.preventDefault(); // Prevent form submission
+                    } else {
+                        errorElement.innerText = ''; // Clear the error message
+                    }
+
+                    // Check if the confirmation password matches
+                    if (confirmPasswordInput.value !== passwordInput.value) {
+                        confirmErrorElement.innerText = 'Passwords do not match';
+                        event.preventDefault(); // Prevent form submission
+                    } else {
+                        confirmErrorElement.innerText = ''; // Clear the error message
+                    }
+
+                    // Check if all required fields are filled
+                    if (!this.checkValidity()) {
+                        event.preventDefault(); // Prevent form submission
+                    }
+                });
+            </script>
+        </div>
+</div>
 </div>

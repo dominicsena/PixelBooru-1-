@@ -1,6 +1,10 @@
-﻿// Controllers/AccountController.cs
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+
+// Controllers/AccountController.cs
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+
 
 namespace pixelBooru_1_.Controllers
 {
@@ -44,4 +48,5 @@ namespace pixelBooru_1_.Controllers
             return View();
         }
     }
+       
 }
