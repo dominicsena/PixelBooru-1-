@@ -1,4 +1,4 @@
-﻿@model pixelBooru_1_.Model.LoginModel
+@model pixelBooru_1_.Model.LoginModel
 <div class="background">
     <div class="container">
         <h1 class="text-center mt-5">Login</h1>
@@ -56,3 +56,106 @@
         }
     }
 </script>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+    body {
+        background-color: darkblue;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .bold-text {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .faded-text {
+        opacity: 0.5;
+        margin-top: 10px;
+    }
+
+    .text-container {
+        background-color: lightgray;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .sort-by-container {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .sort-by-box {
+        visibility: hidden;
+        width: 100px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%; /* Position the box below the button */
+        left: 50%; /* Center the box horizontally */
+        margin-left: -50px; /* Center the box horizontally */
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .sort-by-container:hover .sort-by-box {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .clickable-text-container {
+        display: inline-block;
+        position: relative;
+    }
+
+    .sort-by-box {
+        /* ...existing CSS rules... */
+        bottom: 100%; /* Position the box below the button */
+    }
+</style>
+
+<div>
+    <img src="path_to_your_image.jpg" alt="Your Image" />
+    <div class="text-container">
+        <div class="bold-text">This is bold text</div>
+        <div class="faded-text">This is faded text</div>
+        <div class="faded-text">Artwork</div>
+    </div>
+    <div class="clickable-text-container">
+        <div class="clickable-text">Clickable Text</div>
+        <div class="sort-by-box">Sort by:</div>
+    </div>
+    <div class="clickable-text-container">
+        <div class="clickable-text">Latest</div>
+        <div class="sort-by-box">Sort by:</div>
+    </div>
+    <div class="clickable-text-container">
+        <div class="clickable-text">Oldest</div>
+        <div class="sort-by-box">Sort by:</div>
+    </div>
+</div>
+
