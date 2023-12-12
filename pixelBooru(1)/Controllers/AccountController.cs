@@ -13,12 +13,12 @@ namespace pixelBooru_1_.Controllers
         public IActionResult Login()
         {
             // For demonstration purposes, hardcoded values are used here
-            var username = "JohnDoe";
-            var profilePictureUrl = "/images/profile.jpg";
+           // var username = "JohnDoe";
+           // var profilePictureUrl = "/images/profile.jpg";
 
             // Store user information in session
-            HttpContext.Session.SetString("Username", username);
-            HttpContext.Session.SetString("ProfilePictureUrl", profilePictureUrl);
+           // HttpContext.Session.SetString("Username", username);
+          //  HttpContext.Session.SetString("ProfilePictureUrl", profilePictureUrl);
 
             return View();
         }
@@ -44,6 +44,11 @@ namespace pixelBooru_1_.Controllers
         }
 
         public IActionResult Upload()
+        {
+            return View();
+        }
+
+        public IActionResult ForgotPassword()
         {
             return View();
         }
