@@ -2,7 +2,7 @@
 
 namespace pixelBooru_1_.Controllers
 {
-    public class ArtistController : Controller
+    public class Artists : Controller
     {
         public IActionResult Index()
         {

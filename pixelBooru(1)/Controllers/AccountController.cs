@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace pixelBooru_1_.Controllers
 {
@@ -19,4 +21,5 @@ namespace pixelBooru_1_.Controllers
             return View();
         }
     }
+       
 }
