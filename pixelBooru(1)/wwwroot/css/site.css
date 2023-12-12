@@ -80,28 +80,28 @@ header {
 
 .container-home-main-gallery3, .container-home-image2, .container-home-image1 {
     margin: 0.6rem;
-    width: 442px;
-    height: 333px;
+    width: 333px;
+    height: 250px;
     border: 3px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
 }
     .container-home-image3 img, .container-home-image2 img, .container-home-image1 img {
-        width: 436px;
-        height: 327px;
+        width: 327px;
+        height: 245px;
     }
 
 .container-home-main-gallery {
     margin: 0.6rem;
-    width: 313px;
-    height: 333px;
+    width: 234px;
+    height: 250px;
     border: 3px solid black;
 }
 
 .container-home-image img {
-    width: 293px;
-    height: 327px;
+    width: 229px;
+    height: 245px;
 }
 
 .home-gallery-1 {
@@ -123,8 +123,7 @@ header {
     width: 40.5rem;
     padding: 1.5rem;
     margin: 0rem;
-    /* Add margin-left to push it to the right */
-    margin-left: auto;
+    margin-left: 100px;
 }
 
 .home-gallery-3 {
