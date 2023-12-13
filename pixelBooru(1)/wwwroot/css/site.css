@@ -133,6 +133,27 @@ header {
 
 /*Artwork */
 
+
+#popup-content {
+    display: flex;
+    align-items: center;
+}
+
+#popup-title,
+#popup-info {
+    flex-grow: 1;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+
 .container-artwork-vertical {
     display: flex;
     margin-top: 3rem;

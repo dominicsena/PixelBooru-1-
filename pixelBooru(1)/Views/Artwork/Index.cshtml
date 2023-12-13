@@ -131,7 +131,6 @@
             <span onclick="closeImagePopup()" class="close-popup">&times;</span>
             <img id="popup-image" alt="Image" />
             <div id="popup-content" class="flex-container">
-                <!-- Add content for the pop-up container, e.g., additional image details -->
                 <div id="popup-title" class="artwork-title-container"></div>
                 <div id="popup-info" class="info-container">
                     <div id="popup-artist" class="artist-name-container"></div>
@@ -139,7 +138,16 @@
                 </div>
             </div>
             <div id="popup-tags" class="tags-container"></div>
+
+            <!-- "Edit" button in the same row as tags, on the right side -->
+            <div class="flex-container">
+                <div class="flex-grow"></div>
+                <button id="edit-button" onclick="editImage()">Edit</button>
+            </div>
         </div>
+
+
+
 
 
 
@@ -179,6 +187,10 @@
                 // Close the image pop-up container
                 document.getElementById('image-popup').style.display = 'none';
             }
+            function editImage() {
+                console.log("Edit button clicked!");
+            }
+
         </script>
 
 
