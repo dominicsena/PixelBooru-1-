@@ -17,39 +17,63 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarColor02" >
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">
-                                Home
-                                <span class="visually-hidden">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Artwork" asp-action="Index">Artworks</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Artist" asp-action="Index">Artists</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Upload"> Upload</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Profile">My Profile</a>
-                        </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="collapse navbar-collapse" id="navbarColor02">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">
+                                    Home
+                                    <span class="visually-hidden">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Artwork" asp-action="Index">Artworks</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Artist" asp-action="Index">Artists</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Artwork" asp-action="Upload"> Upload</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Artwork" asp-action="Profile">My Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                            </li>
+                    </div>
+                }
+                else if (!User.Identity.IsAuthenticated)
+                {
+                            <div class="collapse navbar-collapse" id="navbarColor02">
+                                <ul class="navbar-nav me-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">
+                                            Home
+                                            <span class="visually-hidden">(current)</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="" asp-controller="Artwork" asp-action="Index">Artworks</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="" asp-controller="Artist" asp-action="Index">Artists</a>
+                                    </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                        </ul>
+                            </div>
+                }
 
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-
-                    </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-sm-2" type="search" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
+                <form class="d-flex">
+                    <input class="form-control me-sm-2" type="search" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
         </nav>
     </header>

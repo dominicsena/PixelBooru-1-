@@ -1,101 +1,58 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<Artwork>;
+@using System.Security.Claims;
 
-@{
-    ViewBag.Title = "Home Page";
-}
+<div class="myprofile-container">
 
-<style>
-    body {
-        background-color: darkblue;
-        height: 100vh;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
+    <div class="username-holder">
+        <h1> pumpkinpie</h1>
 
-    img {
-        max-width: 100%;
-        max-height: 100%;
-    }
-
-    .bold-text {
-        font-weight: bold;
-        margin-top: 10px;
-    }
-
-    .faded-text {
-        opacity: 0.5;
-        margin-top: 10px;
-    }
-
-    .text-container {
-        background-color: lightgray;
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    .sort-by-container {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-    }
-
-    .sort-by-box {
-        visibility: hidden;
-        width: 100px;
-        background-color: rgba(0, 0, 0, 0.8);
-        color: #fff;
-        text-align: center;
-        border-radius: 5px;
-        padding: 5px;
-        position: absolute;
-        z-index: 1;
-        bottom: 125%; /* Position the box below the button */
-        left: 50%; /* Center the box horizontally */
-        margin-left: -50px; /* Center the box horizontally */
-        opacity: 0;
-        transition: opacity 0.3s;
-    }
-
-    .sort-by-container:hover .sort-by-box {
-        visibility: visible;
-        opacity: 1;
-    }
-
-    .clickable-text-container {
-        display: inline-block;
-        position: relative;
-    }
-
-    .sort-by-box {
-        /* ...existing CSS rules... */
-        bottom: 100%; /* Position the box below the button */
-    }
-</style>
-
-<div>
-    <img src="path_to_your_image.jpg" alt="Your Image" />
-    <div class="text-container">
-        <div class="bold-text">This is bold text</div>
-        <div class="faded-text">This is faded text</div>
-        <div class="faded-text">Artwork</div>
     </div>
-    <div class="clickable-text-container">
-        <div class="clickable-text">Clickable Text</div>
-        <div class="sort-by-box">Sort by:</div>
+    <div class="dp-container-holder">
+        <img src="/testImages/F8Iar6bawAA6ivB.jpg" alt="ArtistWhoCries" />
+
     </div>
-    <div class="clickable-text-container">
-        <div class="clickable-text">Latest</div>
-        <div class="sort-by-box">Sort by:</div>
+    <div class="form-group" id="my-profile-uploadProfile">
+        <label for="profilePicture"></label>
+        <input type="file" name="profilePicture" id="profilePicture" />
     </div>
-    <div class="clickable-text-container">
-        <div class="clickable-text">Oldest</div>
-        <div class="sort-by-box">Sort by:</div>
+    <div class="button-container">
+        <button type="submit" class="btn btn-primary" id="upload-button">Upload</button>
+
     </div>
+
+    <div class="userdescription-container">
+        <p>Bio</p>
+        <div class="user-bio-holder">
+            <div id="textContainer">
+                <div class="textRow" contenteditable="true"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="user-art-container">
+        <h1>Artworks</h1>
+        @foreach (var Artwork in Model)
+        {
+            <div class="col">
+                <div class="card">
+                    <a asp-action="Post" asp-route-id="@Artwork.artId">
+                    @if(Artwork.artImg !=null && Artwork.artImg.Length > 0)
+                    {
+                        <div>
+                            <img src="data:img;base64, @Convert.ToBase64String(Artwork.artImg)" alt="Artwork Image" class="card-img-top">
+
+
+                        </div>
+                    } else
+                    {
+                        <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Artwork Image" class="card-img-top">
+                    }
+                    </a>
+                </div>
+                </div> 
+        }
+     
+       
+    </div>
+
 </div>

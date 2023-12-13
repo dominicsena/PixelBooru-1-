@@ -1,9 +1,5 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
-// Controllers/AccountController.cs
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using pixelBooru_1_.Data;
 using pixelBooru_1_.ViewModels;
 
@@ -59,7 +55,7 @@ namespace pixelBooru_1_.Controllers
 
     }**/
 
-    public class AccountController : Controller
+        public class AccountController : Controller
     {
 
         private readonly SignInManager<users> _signInManager;
@@ -70,7 +66,15 @@ namespace pixelBooru_1_.Controllers
             _signInManager = signInManager;
             _userManager = userManager;
         }
-
+        public IActionResult Profile()
+        {
+            return View();
+        }
+        
+        public IActionResult Upload()
+        {
+            return View();
+        }
 
         [HttpGet]
         public IActionResult Login()
@@ -87,7 +91,7 @@ namespace pixelBooru_1_.Controllers
             if (result.Succeeded)
             {
 
-                return RedirectToAction("Index", "Instructor");
+                return RedirectToAction("Index", "Home");
 
             }
 
@@ -106,7 +110,7 @@ namespace pixelBooru_1_.Controllers
         {
 
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Instructor");
+            return RedirectToAction("Index", "Home");
 
         }
 
@@ -126,17 +130,14 @@ namespace pixelBooru_1_.Controllers
 
             users newUser = new users();
             newUser.UserName = userEnteredData.Username;
-            newUser.firstName = userEnteredData.FirstName;
-            newUser.lastName = userEnteredData.LastName;
             newUser.Email = userEnteredData.Email;
-            newUser.PhoneNumber = userEnteredData.Phone;
 
             var result = await _userManager.CreateAsync(newUser, userEnteredData.Password);
 
             if (result.Succeeded)
             {
 
-                return RedirectToAction("Index", "Instructor");
+                return RedirectToAction("Index", "Home");
 
             }
 
