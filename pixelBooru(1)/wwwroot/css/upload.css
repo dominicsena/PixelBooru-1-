@@ -37,6 +37,10 @@
         transition-timing-function: ease-in-out;
     }
 
+    footer {
+        display: none;
+    }
+
 #output {
     width: 50%;
     height: auto;
