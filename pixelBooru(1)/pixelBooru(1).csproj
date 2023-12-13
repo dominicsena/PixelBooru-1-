@@ -7,4 +7,8 @@
     <RootNamespace>pixelBooru_1_</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\testImages\Drag.jpg" />
+  </ItemGroup>
+
 </Project>
