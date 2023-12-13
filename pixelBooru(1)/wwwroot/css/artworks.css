@@ -1,4 +1,4 @@
-﻿* {
+﻿﻿* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -49,22 +49,22 @@
     transition-duration: .3s;
 }
 
-  /* Style the active sorting button */
-.query-buttons button.active {
-    background-color: #4F4F54;
-    color: white;
-    transition-duration: .3s;
-}
+    /* Style the active sorting button */
+    .query-buttons button.active {
+        background-color: #4F4F54;
+        color: white;
+        transition-duration: .3s;
+    }
 
-  /* Style the sorting buttons on hover */
-.query-buttons button:hover {
-    color: #A7A7AA;
-    transition-timing-function: ease-in-out;
-}
+    /* Style the sorting buttons on hover */
+    .query-buttons button:hover {
+        color: #A7A7AA;
+        transition-timing-function: ease-in-out;
+    }
 
 .artworks-body {
     margin: 0;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans', sans-serif; 
     background-color: #14141b;
     color: white;
 }

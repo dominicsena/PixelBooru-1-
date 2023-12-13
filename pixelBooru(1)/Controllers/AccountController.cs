@@ -27,6 +27,7 @@ namespace pixelBooru_1_.Controllers
         {
             // Implement registration logic here if needed
             return View();
+
         }
 
         public IActionResult Logout()
@@ -52,6 +53,8 @@ namespace pixelBooru_1_.Controllers
         {
             return View();
         }
+
+
     }
        
 }

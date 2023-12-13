@@ -1,5 +1,6 @@
 html {
     font-size: 14px;
+
 }
 
 @media (min-width: 768px) {
@@ -11,7 +12,6 @@ html {
 html {
     position: relative;
     min-height: 100%;
-    max-width:100%;
 }
 
 body {
@@ -21,11 +21,20 @@ body {
     margin-bottom: auto;
     margin: 0;
     padding: 0;
+    
 }
 
 header {
     position: relative;
     max-width:100%;
+}
+
+footer{
+    text-align:center;
+}
+
+.container {
+    background-color: #14141b;
 }
 
 .topnav-right {
@@ -80,7 +89,7 @@ header {
 
 .container-home-main-gallery3, .container-home-image2, .container-home-image1 {
     margin: 0.6rem;
-    width: 333px;
+    width: 310px;
     height: 250px;
     border: 3px solid black;
     display: flex;
@@ -88,7 +97,7 @@ header {
     justify-content: center;
 }
     .container-home-image3 img, .container-home-image2 img, .container-home-image1 img {
-        width: 327px;
+        width: 310px;
         height: 245px;
     }
 
@@ -171,3 +180,96 @@ header {
     .tns-outer button, .tns-nav, .tns-controls{
         display: none;
     }
+
+    .container-artist td{
+        padding-right: 14rem;
+    }
+
+.container-artist {
+    padding-left:8rem;
+    padding-bottom: 2rem;
+}
+
+
+    .artist-profile-container img{
+        width:8rem;
+       height:8rem;
+
+    }
+
+.artist-profile-container {
+    width: 1rem;
+    padding-top: 1rem;
+}
+
+#my-profile-uploadProfile{
+    text-align:center;
+    padding-left: 8rem;
+}
+
+.button-container {
+    text-align: center;
+    padding-top:2rem;
+   
+}
+
+.myprofile-container{
+    padding-top: 2rem;
+}
+
+.dp-container-holder img{
+    width: 8rem;
+    height: 10rem;
+    
+}
+.dp-container-holder {
+    text-align:center;
+    padding: 1.5rem;
+    
+}
+
+.userdescription-container{
+    text-align:center;
+    padding-top:2rem;
+    border: 3px; white;
+}
+#textContainer {
+    border: 1px;
+    border-color:antiquewhite;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.textRow {
+    height: 20px;
+    border-color: white;
+    border-bottom: 1px;
+    padding: 2px 5px;
+    box-sizing: border-box;
+}
+.username-holder{
+    padding-left:5rem;
+}
+
+.user-art-container{
+    padding-left:5rem;
+    padding-bottom: 3rem;
+}
+.user-art-container img{
+    width: 24.6rem;
+    height: 22.6rem;
+    padding-left:2rem;
+    padding-top:2rem;
+}
+
+.dp-container-holder-artist img{
+    width:14rem;
+    height:19rem;
+}
+.dp-container-holder-artist {
+    text-align:center;
+}
