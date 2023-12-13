@@ -139,6 +139,16 @@
             </div>
             <div id="popup-tags" class="tags-container"></div>
 
+            <div id="edit-form" style="display: none;">
+                <label for="edit-title">Title:</label>
+                <input type="text" id="edit-title">
+
+                <label for="edit-artist">Artist:</label>
+                <input type="text" id="edit-artist">
+
+                <button onclick="saveEdits()">Save</button>
+            </div>
+
             <!-- "Edit" button in the same row as tags, on the right side -->
             <div class="flex-container">
                 <div class="flex-grow"></div>
@@ -146,51 +156,52 @@
             </div>
         </div>
 
-
-
-
-
-
         <script>
             function handleImageClick(imageId, imagePath, title, artistName, datePosted, tags) {
-                // Handle click event, you can use imageId for further processing
-                console.log("Clicked on image with ID:", imageId);
+                // Handle click event...
 
-                // Set the source of the pop-up image
-                document.getElementById('popup-image').src = imagePath;
-
-                // Set the title, artist name, and date in the pop-up content
-                document.getElementById('popup-title').innerText = "Title: " + title;
-                document.getElementById('popup-artist').innerText = "Artist: " + artistName;
-                document.getElementById('popup-date').innerText = "Date Posted: " + datePosted;
-
-                // Display clickable tags in the pop-up content
-                var tagsContainer = document.getElementById('popup-tags');
-                tagsContainer.innerHTML = "Tags: " + generateTagLinks(tags);
+                // Set the title and artist name in the edit form
+                document.getElementById('edit-title').value = title;
+                document.getElementById('edit-artist').value = artistName;
 
                 // Show the image pop-up container
                 document.getElementById('image-popup').style.display = 'block';
             }
 
-
-
-            function generateTagLinks(tags) {
-                return tags.map(tag => `<a href="#" onclick="handleTagClick('${tag}')">${tag}</a>`).join(', ');
-            }
-
-            function handleTagClick(tag) {
-                // Handle tag click event, e.g., navigate to a tag-specific page
-                console.log("Clicked on tag:", tag);
-            }
-
-            function closeImagePopup() {
-                // Close the image pop-up container
-                document.getElementById('image-popup').style.display = 'none';
-            }
             function editImage() {
-                console.log("Edit button clicked!");
+                // Show the edit form
+                document.getElementById('edit-form').style.display = 'block';
             }
 
+            async function saveEdits() {
+                // Get the edited values
+                var newTitle = document.getElementById('edit-title').value;
+                var newArtist = document.getElementById('edit-artist').value;
+
+                // Get the imageId from somewhere
+                var imageId = "your_image_id";
+
+                // Send an AJAX request to update the image information
+                const response = await fetch('/Image/UpdateImage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ imageId, title: newTitle, artistName: newArtist }),
+                });
+
+                if (response.ok) {
+                    // Update the pop-up content with the new values
+                    document.getElementById('popup-title').innerText = "Title: " + newTitle;
+                    document.getElementById('popup-artist').innerText = "Artist: " + newArtist;
+
+                    // Hide the edit form
+                    document.getElementById('edit-form').style.display = 'none';
+                } else {
+                    console.error('Failed to update image information');
+                    // Handle error as needed
+                }
+            }
         </script>
 
 
