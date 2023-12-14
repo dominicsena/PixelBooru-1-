@@ -35,7 +35,7 @@
         {
             <div class="col">
                 <div class="card">
-                    <a asp-action="Post" asp-route-id="@Artwork.artId">
+                   
                     @if(Artwork.artImg !=null && Artwork.artImg.Length > 0)
                     {
                         <div>
@@ -47,8 +47,28 @@
                     {
                         <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Artwork Image" class="card-img-top">
                     }
-                    </a>
+                 
+                    <div class="card-body">
+                        <h2>@Artwork.artTitle</h2>
+                        <span>Viewable By: @Artwork.artRating</span>
+                        <p>@Artwork.artTags</p>
+                        <p>@Artwork.artCaption</p>
+                    </div>
+
+                   
+                        <!-- Add the delete button -->
+                  
+                    <form method="post" action="@Url.Action("DeleteArtwork", "Artwork")">
+                        <input type="hidden" name="artworkId" value="@Artwork.artId" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+
+                    <a asp-action="UpdateArtwork" asp-controller="Artwork" asp-route-Id="@Artwork.artId" class="book-a-table-btn scrollto my-4"> <button type="submit" class="btn btn-danger">Edit</button></a>
+
+                    <!-- Add the edit button -->
+                    
                 </div>
+                
                 </div> 
         }
      

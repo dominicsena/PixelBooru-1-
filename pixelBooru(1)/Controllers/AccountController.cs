@@ -110,7 +110,7 @@ namespace pixelBooru_1_.Controllers
         {
 
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
 
         }
 
@@ -137,7 +137,7 @@ namespace pixelBooru_1_.Controllers
             if (result.Succeeded)
             {
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Register", "Account");
 
             }
 

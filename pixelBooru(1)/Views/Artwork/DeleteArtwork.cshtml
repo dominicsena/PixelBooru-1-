@@ -1,0 +1,110 @@
+﻿@model Artwork
+<link rel="stylesheet" href="/css/upload.css">
+
+<style>
+    body {
+        background-color: #14141b;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Function to update character counter
+        function updateCharacterCounter(inputId, counterId, maxLength) {
+            var input = $('#' + inputId);
+            var counter = $('#' + counterId);
+
+            input.on('input', function () {
+                var currentLength = input.val().length;
+                counter.text(currentLength + '/' + maxLength);
+            });
+        }
+
+        // Function to update tag counter
+        function updateTagCounter(inputId, counterId, maxTags) {
+            var input = $('#' + inputId);
+            var counter = $('#' + counterId);
+
+            input.on('input', function () {
+                var tags = input.val().split(',');
+                var currentTags = tags.length;
+                // Remove empty tags (e.g., when the input starts with a comma)
+                if (tags[0] === '') {
+                    currentTags--;
+                }
+                counter.text(currentTags + '/' + maxTags);
+            });
+        }
+
+        // Update character counters for title, caption, and tags
+        updateCharacterCounter('title', 'title-counter', 32);
+        updateCharacterCounter('caption', 'caption-counter', 3000);
+        updateTagCounter('tags', 'tag-counter', 10);
+    });
+
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        var uploadedImage = document.getElementById('uploaded-image');
+
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+            URL.revokeObjectURL(output.src); // free memory
+        }
+    };
+</script>
+
+<div class="main">
+    <div class="upload-container">
+        <div class="image-box">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form asp-action="DeleteArtwork" asp-controller="Artwork" method="post" enctype="multipart/form-data" >
+
+                <div class="add-image">
+                    <label asp-for="artImg">Upload Image</label>
+                    <input type="file" id="artImg" asp-for="artImg" accept=".jpg, .png, .jpeg" disabled readonly>
+                    <img id="output" style="max-width: 100%;" />
+                </div>
+
+                <div class="title-form">
+                    <label asp-for="artTitle">Title</label>
+                    <input class="input-title" type="text" id="title" asp-for="artTitle" maxlength="32" placeholder="Title" disabled readonly>
+                    <span class="character-counter" id="title-counter">0/32</span>
+
+                    <div class="form-guide-text"></div>
+                </div>
+
+                <div class="caption-form">
+                    <label asp-for="artCaption">Caption</label>
+                    <div class="input-container">
+                        <textarea class="input-caption" id="caption" asp-for="artCaption" maxlength="3000" placeholder="Caption" disabled readonly></textarea>
+                        <span class="character-counter" id="caption-counter">0/3000</span>
+                    </div>
+                    <div class="form-guide-text"></div>
+                </div>
+
+
+                <div class="tags-form">
+                    <label asp-for="artTags">Tags</label>
+                    <div class="input-container">
+                        <input class="input-tags" type="text" id="tags" asp-for="artTags" maxlength="100" placeholder="Tags (separated by commas, ie. girl, boy, original)" disabled readonly>
+                        <span class="character-counter" id="tag-counter">0/10</span>
+                    </div>
+                    <div class="form-guide-text"></div>
+                </div>
+
+                <div class="ratings-form">
+                    <label asp-for="artRating">Visible to:</label>
+                    <select class="ratings-form" asp-items="@Html.GetEnumSelectList(typeof(Rating))" asp-for="artRating" disabled readonly></select>
+                </div>
+
+                <button type="submit" class="delete-btn">Delete</button>
+                <button class="back-btn" onclick="history.back()">Back</button>
+
+            </form>
+
+
+
+
+        </div>
+    </div>

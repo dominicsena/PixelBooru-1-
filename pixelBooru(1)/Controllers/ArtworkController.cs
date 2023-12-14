@@ -60,12 +60,77 @@ namespace pixelBooru_1_.Controllers
         {
             return View(_dbData.Artworks);
         }
-        
-        public IActionResult Post()
+
+        [HttpPost]
+        public IActionResult DeleteArtwork(int artworkId)
         {
-            return View();
+            // Retrieve the artwork from the database based on the artworkId
+            var artwork = _dbData.Artworks.Find(artworkId);
+
+            if (artwork != null)
+            {
+                // Remove the artwork from the database
+                _dbData.Artworks.Remove(artwork);
+                _dbData.SaveChanges();
+            }
+
+            // Redirect to the profile or another appropriate page
+            return RedirectToAction("Profile");
         }
 
+        [HttpGet]
+        public IActionResult UpdateArtwork(int id)
+        {
+            //Search for recipe whose id matches the given id
+            Artwork? artwork = _dbData.Artworks.FirstOrDefault(rec => rec.artId == id);
+
+            if (artwork != null)
+                return View(artwork);
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateArtwork(Artwork artworkChanges, IFormFile? changeImg)
+        {
+            if (ModelState.IsValid)
+            {
+                Artwork? artwork = _dbData.Artworks.FirstOrDefault(rec => rec.artId == artworkChanges.artId);
+
+                if (artwork != null)
+                {
+                    artwork.artTitle = artworkChanges.artTitle;
+                    artwork.artCaption = artworkChanges.artCaption;
+                    artwork.artRating = artworkChanges.artRating;
+                    artwork.artTags = artworkChanges.artTags;
+                   
+
+                    if (changeImg != null && changeImg.Length > 0)
+                    {
+                        using MemoryStream memoryStream = new MemoryStream();
+                        await changeImg.CopyToAsync(memoryStream);
+                        artwork.artImg = memoryStream.ToArray();
+                    }
+                    else
+                    {
+                        artwork.artImg = null; 
+                    }
+
+                    _dbData.Entry(artwork).State = EntityState.Modified;
+                    await _dbData.SaveChangesAsync();
+
+                    return RedirectToAction("Profile");
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            else
+            {
+                return View("UpdateArtwork", artworkChanges);
+            }
+        }
 
     }
 }
