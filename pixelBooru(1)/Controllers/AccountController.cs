@@ -158,6 +158,36 @@ namespace pixelBooru_1_.Controllers
             return View(userEnteredData);
 
         }
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, token }, protocol: HttpContext.Request.Scheme);
+
+                    // In a real-world application, you would send an email with the reset link.
+                    // For demonstration purposes, just output the reset link to the console.
+                    Console.WriteLine($"Reset Link: {callbackUrl}");
+
+                    return View("ForgotPasswordConfirmation");
+                }
+
+                // To avoid account enumeration attacks, don't reveal that the user does not exist.
+                return View("ForgotPasswordConfirmation");
+            }
+
+            return View(model);
+        }
 
     }
 
