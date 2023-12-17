@@ -1,4 +1,5 @@
-﻿@model pixelBooru_1_.ViewModels.RegisterViewModel
+﻿@using pixelBooru_1_.ViewModels;
+@model RegisterViewModel
 
 <div class="background">
 
@@ -6,15 +7,17 @@
     <h1 class="text-center mt-5">Registration</h1>
 
     <div asp-validation-summary="All">
-        <form asp-action="Register" asp-controller="Account" class="mt-5">
+        <form asp-action="Register" asp-controller="Account" class="mt-5" enctype="multipart/form-data">
             <div class="form-group">
-                <label asp-for="Username"></label>
-                <input asp-for="Username" class="form-control" placeholder="Enter Username" style="font-size: inherit; line-height: 1; text-align: center; margin-bottom: 10px;" required>
+                <label asp-for="UserName"></label>
+                <input asp-for="UserName" class="form-control" placeholder="Enter Username" style="font-size: inherit; line-height: 1; text-align: center; margin-bottom: 10px;" required>
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 <label asp-for="Password"></label>
                 <div class="input-group">
                     <input asp-for="Password" type="password" class="form-control" placeholder="********" oninput="handlePasswordInput(this)" style="font-size: inherit; line-height: 1; text-align: center; margin-bottom: 10px;" required>
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility(this, 'Password')">Show</button>
                     </div>
@@ -24,6 +27,7 @@
                 <label asp-for="ConfirmPassword"></label>
                 <div class="input-group">
                     <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="********" oninput="handlePasswordInput(this)" style="font-size: inherit; line-height: 1; text-align: center; margin-bottom: 10px;" required>
+                        
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility(this, 'ConfirmPassword')">Show</button>
                     </div>
@@ -32,7 +36,15 @@
             <div class="form-group">
                 <label asp-for="Email"></label>
                 <input asp-for="Email" class="form-control" placeholder="Enter Email" style="font-size: inherit; line-height: 1; text-align: center; margin-bottom: 10px;" required>
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
+
+                <div class="form-floating mb-3 col-md">
+                    <input asp-for="profilePicture" class="form-control" placeholder="" type="file" accept=".png,.jpg,.jpeg">
+                    <label asp-for="profilePicture"></label>
+                    @Html.ValidationMessageFor(model => model.profilePicture, "", new { @class = "text-danger" })
+                </div>
+
             <input type="submit" value="Submit" class="btn btn-primary">
 
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>

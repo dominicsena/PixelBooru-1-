@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using pixelBooru_1_.Data;
 using pixelBooru_1_.Models;
 using System.Diagnostics;
 
@@ -7,15 +8,19 @@ namespace pixelBooru_1_.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly AppDbContext _dbData;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, AppDbContext dbData)
         {
+            _dbData = dbData;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var artworkList = _dbData.Artworks.ToList();
+
+            return View(artworkList);
         }
 
         public IActionResult Privacy()

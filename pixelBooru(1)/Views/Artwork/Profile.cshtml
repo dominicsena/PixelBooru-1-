@@ -1,78 +1,74 @@
-﻿@model IEnumerable<Artwork>;
+﻿@model IEnumerable<Artwork>
 @using System.Security.Claims;
+@using pixelBooru_1_.Models;
+@using pixelBooru_1_.Data;
+@using Microsoft.AspNetCore.Identity;
+
+@inject UserManager<users> UserManager;
 
 <div class="myprofile-container">
 
     <div class="username-holder">
-        <h1> pumpkinpie</h1>
-
+        <h1> @(await UserManager.GetUserAsync(User))</h1>
     </div>
     <div class="dp-container-holder">
-        <img src="/testImages/F8Iar6bawAA6ivB.jpg" alt="ArtistWhoCries" />
-
-    </div>
-    <div class="form-group" id="my-profile-uploadProfile">
-        <label for="profilePicture"></label>
-        <input type="file" name="profilePicture" id="profilePicture" />
-    </div>
-    <div class="button-container">
-        <button type="submit" class="btn btn-primary" id="upload-button">Upload</button>
-
+        <img src="@((await UserManager.GetUserAsync(User)).profilePicture != null ?
+											$"data:image;base64,{Convert.ToBase64String((await UserManager.GetUserAsync(User)).profilePicture)}" :
+											"https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png")" class="profile-img" alt="Profile Picture">
     </div>
 
-    <div class="userdescription-container">
-        <p>Bio</p>
-        <div class="user-bio-holder">
-            <div id="textContainer">
-                <div class="textRow" contenteditable="true"></div>
-            </div>
+</div>
+
+<div class="userdescription-container">
+    <p>Bio</p>
+    <div class="user-bio-holder">
+        <div id="textContainer">
+            <div class="textRow" contenteditable="true"></div>
         </div>
     </div>
+</div>
 
-    <div class="user-art-container">
-        <h1>Artworks</h1>
-        @foreach (var Artwork in Model)
+<div class="user-art-container">
+    <h1>Artworks</h1>
+    @foreach (var Artwork in Model)
+    {
+        if (@Artwork.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier))
         {
             <div class="col">
-                <div class="card">
-                   
-                    @if(Artwork.artImg !=null && Artwork.artImg.Length > 0)
-                    {
-                        <div>
-                            <img src="data:img;base64, @Convert.ToBase64String(Artwork.artImg)" alt="Artwork Image" class="card-img-top">
-
-
-                        </div>
-                    } else
-                    {
-                        <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Artwork Image" class="card-img-top">
-                    }
-                 
-                    <div class="card-body">
-                        <h2>@Artwork.artTitle</h2>
-                        <span>Viewable By: @Artwork.artRating</span>
-                        <p>@Artwork.artTags</p>
-                        <p>@Artwork.artCaption</p>
+            <div class="card">
+                @if (Artwork.artImg != null && Artwork.artImg.Length > 0)
+                {
+                    <div>
+                        <img src="data:img;base64, @Convert.ToBase64String(Artwork.artImg)" alt="Artwork Image" class="card-img-top">
                     </div>
+                }
+                else
+                {
+                    <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Artwork Image" class="card-img-top">
+                }
 
-                   
-                        <!-- Add the delete button -->
-                  
-                    <form method="post" action="@Url.Action("DeleteArtwork", "Artwork")">
-                        <input type="hidden" name="artworkId" value="@Artwork.artId" />
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-
-                    <a asp-action="UpdateArtwork" asp-controller="Artwork" asp-route-Id="@Artwork.artId" class="book-a-table-btn scrollto my-4"> <button type="submit" class="btn btn-danger">Edit</button></a>
-
-                    <!-- Add the edit button -->
-                    
+                <div class="card-body">
+                    <h2>@Artwork.artTitle</h2>
+                    <span>Viewable By: @Artwork.artRating</span>
+                    <p>@Artwork.artTags</p>
+                    <p>@Artwork.artCaption</p>
                 </div>
-                
-                </div> 
-        }
-     
-       
-    </div>
 
+                <!-- Add the delete button -->
+
+                <form method="post" action="@Url.Action("DeleteArtwork", "Artwork")">
+                    <input type="hidden" name="artId" value="@Artwork.artId" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+
+                <!-- Add the edit button -->
+
+                <a asp-action="UpdateArtwork" asp-controller="Artwork" asp-route-Id="@Artwork.artId" class="book-a-table-btn scrollto my-4"> <button type="submit" class="btn btn-danger">Edit</button></a>
+
+            </div>
+        </div>
+        }
+        
+    }
+</div>
 </div>

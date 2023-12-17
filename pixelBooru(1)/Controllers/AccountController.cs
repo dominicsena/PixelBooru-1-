@@ -6,77 +6,20 @@ using pixelBooru_1_.ViewModels;
 
 namespace pixelBooru_1_.Controllers
 {
-    /**public class AccountController : Controller
-    {
-        public IActionResult Login()
-        {
-            // For demonstration purposes, hardcoded values are used here
-           // var username = "JohnDoe";
-           // var profilePictureUrl = "/images/profile.jpg";
-
-            // Store user information in session
-           // HttpContext.Session.SetString("Username", username);
-          //  HttpContext.Session.SetString("ProfilePictureUrl", profilePictureUrl);
-
-            return View();
-        }
-
-        public IActionResult Register()
-        {
-            // Implement registration logic here if needed
-            return View();
-
-        }
-
-        public IActionResult Logout()
-        {
-            // Clear user information from session on logout
-            HttpContext.Session.Remove("Username");
-            HttpContext.Session.Remove("ProfilePictureUrl");
-
-            return View();
-        }
-
-        public IActionResult Profile()
-        {
-            return View();
-        }
-
-        public IActionResult Upload()
-        {
-            return View();
-        }
-
-        public IActionResult ForgotPassword()
-        {
-            return View();
-        }
-
-
-    }**/
-
-        public class AccountController : Controller
+    public class AccountController : Controller
     {
 
         private readonly SignInManager<users> _signInManager;
         private readonly UserManager<users> _userManager;
 
-        public AccountController(SignInManager<users> signInManager, UserManager<users> userManager) //: this(signInManager)
+        public AccountController(SignInManager<users> signInManager, UserManager<users> userManager) 
         {
             _signInManager = signInManager;
             _userManager = userManager;
         }
-        public IActionResult Profile()
-        {
-            return View();
-        }
         
-        public IActionResult Upload()
-        {
-            return View();
-        }
-
-        [HttpGet]
+        
+       [HttpGet]
         public IActionResult Login()
         {
             return View();
@@ -86,10 +29,11 @@ namespace pixelBooru_1_.Controllers
         public async Task<IActionResult> Login(LoginViewModel loginInfo)
         {
 
-            var result = await _signInManager.PasswordSignInAsync(loginInfo.Username, loginInfo.Password, loginInfo.RememberMe, false);
+            var result = await _signInManager.PasswordSignInAsync(loginInfo.UserName, loginInfo.Password, loginInfo.RememberMe, false);
 
             if (result.Succeeded)
             {
+                var user = await _userManager .FindByNameAsync(loginInfo.UserName);
 
                 return RedirectToAction("Index", "Home");
 
@@ -123,21 +67,33 @@ namespace pixelBooru_1_.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel userEnteredData)
+        public async Task<IActionResult> Register(RegisterViewModel userEnteredData, IFormFile? profilePicture)
         {
 
-
-
+            if (ModelState.IsValid)
+            {
             users newUser = new users();
-            newUser.UserName = userEnteredData.Username;
+            newUser.UserName = userEnteredData.UserName;
             newUser.Email = userEnteredData.Email;
+
+            if(profilePicture != null && profilePicture.Length > 0)
+            {
+                using var memoryStream = new MemoryStream();
+                await profilePicture.CopyToAsync(memoryStream);
+                newUser.profilePicture = memoryStream.ToArray();
+
+                }
+                else
+                {
+                    newUser.profilePicture = null;
+                }
 
             var result = await _userManager.CreateAsync(newUser, userEnteredData.Password);
 
             if (result.Succeeded)
             {
-
-                return RedirectToAction("Login", "Account");
+                    TempData["SuccessMessage"] = "Registration successful!, Please Login.";
+                    return RedirectToAction("Login", "Account");
 
             }
 
@@ -150,10 +106,8 @@ namespace pixelBooru_1_.Controllers
                     ModelState.AddModelError("", error.Description);
 
                 }
-
             }
-
-
+            }
 
             return View(userEnteredData);
 

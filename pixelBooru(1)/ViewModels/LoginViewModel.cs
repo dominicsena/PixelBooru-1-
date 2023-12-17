@@ -7,7 +7,7 @@ namespace pixelBooru_1_.ViewModels
 
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Username is Invalid")]
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         [Display(Name = "Password")]
         [Required(ErrorMessage = "Password is Invalid")]

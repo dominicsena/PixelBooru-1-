@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@model List<pixelBooru_1_.Models.Artwork>
+
+@{
+    var sortedModel = Model.OrderByDescending(a => a.artId).ToList();
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -20,21 +26,21 @@
             <a class="nav-link" asp-area="" asp-controller="Artwork" asp-action=""><h2 class="header-1">MOST POPULAR </h2></a>
         </div>
 
-    <div id="popularSlider" class="container-gallery-parent">
-        <div class="slider-item">
-            <img src="~/testImages/hp1.jpg" alt="Placeholder 1">
-        </div>
-        <div class="slider-item">
+        <div id="popularSlider" class="container-gallery-parent">
+            <div class="slider-item">
+                <img src="~/testImages/hp1.jpg" alt="Placeholder 1">
+            </div>
+            <div class="slider-item">
                 <img src="~/testImages/hp2.jpg" alt="Placeholder 2">
-        </div>
-        <div class="slider-item">
+            </div>
+            <div class="slider-item">
                 <img src="~/testImages/hp3.jpg" alt="Placeholder 3">
-        </div>
-        <div class="slider-item">
+            </div>
+            <div class="slider-item">
                 <img src="~/testImages/hp4.jpg" alt="Placeholder 4">
+            </div>
+            <!-- Add more slider items with placeholder images as needed -->
         </div>
-        <!-- Add more slider items with placeholder images as needed -->
-    </div>
         <div class="home-gallery-side-div">
 
 
@@ -45,32 +51,46 @@
 
                 <div class="container-gallery-parent">
                     <div class="container-home-main-gallery1">
-                        <div class="container-home-image1">
-                            <img src="https://konachan.net/jpeg/58e07ea663993969ccdc73d190a47c45/Konachan.com%20-%20366542%20animal_ears%20arknights%20blue_eyes%20brown_hair%20cape%20dress%20horns%20long_hair%20sword%20viviana_%28arknights%29%20weapon.jpg" alt="picture" />
-                        </div>
+                        @{
+                            for (int i = 0; i < Math.Min(sortedModel.Count, 2); i++)
+                            {
+                                <div class="container-home-image1">
+
+                                    @if (sortedModel[i].artImg != null && sortedModel[i].artImg.Length > 0)
+                                    {
+                                        <div>
+                                            <img src="data:img;base64, @Convert.ToBase64String(sortedModel[i].artImg)" alt="Artwork Image" class="card-img-top">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="Artwork Image" class="card-img-top">
+                                    }
+                                </div>
+                            }
+                        }
                     </div>
 
                     <div class="container-home-main-gallery1">
-                        <div class="container-home-image1">
-                            <img src="https://konachan.net/sample/0227e2c804c98b3bed09e04d7a9ab972/Konachan.com%20-%20366551%20sample.jpg" alt="picture" />
-                        </div>
+                        @{
+                            for (int i = 2; i < Math.Min(sortedModel.Count, 4); i++)
+                            {
+                                <div class="container-home-image1">
+                                    @if (sortedModel[i].artImg != null && sortedModel[i].artImg.Length > 0)
+                                    {
+                                        <div>
+                                            <img src="data:img;base64, @Convert.ToBase64String(sortedModel[i].artImg)" alt="Artwork Image" class="card-img-top">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <img src="https://konachan.net/sample/0227e2c804c98b3bed09e04d7a9ab972/Konachan.com%20-%20366551%20sample.jpg" alt="picture" />
+                                    }
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
-
-                <div class="container-gallery-parent">
-                    <div class="container-home-main-gallery1">
-                        <div class="container-home-image1">
-                            <img src="https://konachan.net/jpeg/cb516116390abe7ec4622b8a2728e70c/Konachan.com%20-%20366518%202girls%20dark_miku_%28project_voltage%29%20gloves%20hatsune_miku%20kokorori-p%20linoone%20meloetta%20pokemon%20project_voltage%20psychic_miku_%28project_voltage%29%20vocaloid.jpg" alt="picture" />
-                        </div>
-                    </div>
-
-                    <div class="container-home-main-gallery1">
-                        <div class="container-home-image1">
-                            <img src="https://konachan.net/jpeg/aba3e9cedac75c50d78956f6b384c686/Konachan.com%20-%20366516%202girls%20electric_miku_%28project_voltage%29%20ground_miku_%28project_voltage%29%20hatsune_miku%20kokorori-p%20pokemon%20project_voltage%20rotom%20vibrava%20vocaloid.jpg" alt="picture" />
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
             <div class="home-gallery-right">
@@ -115,7 +135,7 @@
 
             </div>
 
-        </div> 
+        </div>
 
         <div class="home-gallery-explore">
 
@@ -207,7 +227,7 @@
 
         </div>
 
-       </div>
+    </div>
 
     <!-- Add Tiny Slider JS to your body -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js"></script>

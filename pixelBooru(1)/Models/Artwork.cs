@@ -21,7 +21,7 @@ namespace pixelBooru_1_.Models
         public int artId { get; set; }
         [ForeignKey("userId")]
 
-        public string? userId { get; set; }
+        public string? UserId { get; set; }
 
         public string? UID { get; set; }
 
@@ -29,6 +29,8 @@ namespace pixelBooru_1_.Models
 
         public string? artCaption {  get; set; }
 
+        [DataType(DataType.Upload)]
+        [RegularExpression(@"^.*\.(jpg|jpeg|png)$", ErrorMessage = "Only JPG, JPEG, and PNG files are allowed.")]
         public byte[]? artImg { get; set;}
 
         public string? artTags { get; set;}

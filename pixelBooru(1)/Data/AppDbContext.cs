@@ -13,6 +13,11 @@ namespace pixelBooru_1_.Data
         {
             base.OnModelCreating(modelBuilder);
 
+      
+        }
+        public List<string> GetAllUsernames()
+        {
+            return [.. Users.Select(u => u.UserName)];
         }
     }
 }

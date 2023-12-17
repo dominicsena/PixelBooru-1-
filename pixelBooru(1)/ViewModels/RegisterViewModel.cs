@@ -4,10 +4,11 @@ namespace pixelBooru_1_.ViewModels
 {
     public class RegisterViewModel
     {
+        public int UserId { get; set; }
 
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Please enter your username")]
-        public string? Username { get; set; }
+        public string? UserName { get; set; }
 
         //Password
         [Display(Name = "Password")]
@@ -16,9 +17,13 @@ namespace pixelBooru_1_.ViewModels
         public string? Password { get; set; }
 
         //Confirm Password
+
+
+
         [Display(Name = "Confirm Password")]
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "You must confirm your password")]
+        [Compare(nameof(Password), ErrorMessage = "Password do not match")]
+        [Required(ErrorMessage = "You must confirm your password")] 
         public string? ConfirmPassword { get; set; }
 
         //Email
@@ -26,6 +31,10 @@ namespace pixelBooru_1_.ViewModels
         [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "Please enter your email address")]
         public string? Email { get; set; }
+
+        [DataType(DataType.Upload)]
+        [RegularExpression(@"^.*\.(jpg|jpeg|png)$", ErrorMessage = "Only JPG, JPEG, and PNG files are allowed.")]
+        public byte[]? profilePicture { get; set; }
 
     }
 }

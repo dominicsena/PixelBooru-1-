@@ -1,70 +1,37 @@
-@model ArtistModel
+@model List<string>
+
 
 <link rel="stylesheet" href="/css/site.css">
 
-    <div class="container-artist">
-        <h1 class="text-center mt-5">Artist Page</h1>
-        <h2>Artists</h2>
+<div class="container-artist">
+    <h1 class="text-center mt-5">Artist Page</h1>
+    <h2>Artists</h2>
 
-        <table class="table-artist">
-            <thead>
+    <table class="table-artist">
+        <thead>
+            <tr>
+                <th scope="col">Profile Picture</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var username in Model)
+            {
                 <tr>
-                    <th scope="col">Profile Picture</th>
-                    <th scope="col">User Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Profile Link</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                
-                <tr>
-                <td>
-                    <div class="artist-profile-container">
-                        <img src="/testImages/F0qeN45acAAGEJ3.jpg" alt="ArtistWhoCries" />
-                    </div>
-                </td>
                     <td>
-                    <p>ArtistWhoCries</p>
+                        <div class="artist-profile-container">
+                            <img src="/testImages/F0qeN45acAAGEJ3.jpg" alt="@username" />
+                        </div>
                     </td>
-                <td>
-                    An Beginner Artist.
-                    Commission open
-                </td>
-                <td><a asp-area="" asp-controller="Artist" asp-action="Profile">View Profile</a></td>
-                </tr>
-                
-                <tr>
-                <td>
-                    <div class="artist-profile-container">
-                        <img src="/testImages/F0XJIAOaEAQXaD6.jpg" alt="ArtistWhoCries" />
-                    </div>
-                </td>
                     <td>
-                    <p>artistonly</p>
+                        <p>@username</p>
                     </td>
-                <td>
-                    Hi, I post my own ai art.
-                </td>
-                <td><a asp-controller="Artist" asp-action="Profile">View Profile</a></td>
-                </tr>
-                
-                <tr>
-                <td>
-                    <div class="artist-profile-container">
-                        <img src="/testImages/F8Iar6bawAA6ivB.jpg" alt="ArtistWhoCries" />
-                    </div>
-                </td>
                     <td>
-                    <p>danielwartist</p>
+                        This person is lazy, they haven't put a bio yet.
                     </td>
-                <td>
-                    I am best known as Danielwartist on deviantart.com
-                </td>
-                <td><a asp-controller="Artist" asp-action="Profile">View Profile</a></td>
                 </tr>
-                
-            </tbody>
-        </table>
-    </div>
-
+            }
+        </tbody>
+    </table>
+</div>
