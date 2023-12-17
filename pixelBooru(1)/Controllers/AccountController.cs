@@ -137,7 +137,7 @@ namespace pixelBooru_1_.Controllers
             if (result.Succeeded)
             {
 
-                return RedirectToAction("Register", "Account");
+                return RedirectToAction("Login", "Account");
 
             }
 
